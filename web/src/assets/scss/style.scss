@@ -1,0 +1,170 @@
+@import "./variables"; //reset
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 13px;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2em;
+  background-color: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: #999;
+}
+
+//colors
+
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+//text
+$position: (left, center, right);
+@each $var in $position {
+  .text-#{$var} {
+    //注意这里两个都是大括号
+    text-align: $var !important;
+  }
+}
+
+//font-size
+
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+//width heigth
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+//flex
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+//spacing
+// .mt-1  =>  margin-top
+
+//m-0
+@each $typeKey, $type in $spacing-types {
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size;
+    }
+  }
+}
+//mx-1  my-1
+@each $typeKey, $type in $spacing-types {
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+}
+//mt-1
+@each $typeKey, $type in $spacing-types {
+  @each $directionsKey, $directions in $spacing-directions {
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typeKey}#{$directionsKey}-#{$sizeKey} {
+        #{$type}-#{$directions}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
+
+//button
+.btn {
+  border: none;
+  border-radius: 0.1538rem;
+  font-size: map-get($font-sizes, "sm") * $base-font-size;
+}
+
+//nav
+.nav {
+  display: flex;
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2px;
+    &.active {
+      color: map-get($colors, "primary");
+      border-bottom: 3px solid map-get($colors, "primary");
+    }
+  }
+  &.nav-inverse {
+    .nav-item {
+      color: map-get($colors, "white");
+      &.active {
+        border-bottom: 3px solid map-get($colors, "white");
+      }
+    }
+  }
+}
+
+//sprite
+.sprite {
+  background: url(../精灵图片.jpg);
+  background-size: 107.9231rem;
+  display: inline-block;
+  &.sprite-news {
+    width: 14.7692rem;
+    height: 14.4615rem;
+    background-position: 6.276% 6.468%;
+  }
+  &.sprite-arrow {
+    width: 84px;
+    height: 80px;
+    background-position: 36.391% 94.298%;
+  }
+}

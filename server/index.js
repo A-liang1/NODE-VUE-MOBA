@@ -12,6 +12,7 @@ app.use("/login", express.static(__dirname + "/login"));
 
 require("./plugins/db")(app);
 require("./routes/admin/index")(app);
+require("./routes/web/index")(app);
 app.use(
   cors({
     origin: "http://localhost:8080",
